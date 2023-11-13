@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { ProductContext } from '../context/ProductContext'
 import { Link } from 'react-router-dom'
-import { AiOutlineStar } from 'react-icons/ai'
 
 export const ProductCard = ({ product, id }) => {
     const { createEthereumContract } = useContext(ProductContext)
