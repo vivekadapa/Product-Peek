@@ -3,13 +3,12 @@ import { ProductContext } from '../context/ProductContext'
 import { ProductCard } from './ProductCard'
 
 
+
+
 export const Home = () => {
 
     const { products,getProducts } = useContext(ProductContext)
     console.log(products)
-
-    
-
     useEffect(()=>{
         getProducts()
     })
