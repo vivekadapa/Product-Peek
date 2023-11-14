@@ -13,9 +13,9 @@ export const Product = () => {
     const [error, setError] = useState(null);
     const [reviews, setReviews] = useState([]);
     const [addReview, setAddReview] = useState({
-        rating: 1, // Initialize rating
-        oneWordReview:'',
-        review: '', // Initialize review
+        rating: 1,
+        oneWordReview: '',
+        review: '',
     });
 
     const handleChange = (e, name) => {
@@ -29,7 +29,7 @@ export const Product = () => {
 
         try {
             const cid = await uploadTextToIPFS(addReview.review);
-            const res = await productContract.addReview(id, cid, addReview.rating,addReview.oneWordReview);
+            const res = await productContract.addReview(id, cid, addReview.rating, addReview.oneWordReview);
             // console.log(res);   
             setError(null)
         } catch (error) {
@@ -60,13 +60,11 @@ export const Product = () => {
             for (const review of reviewsById) {
                 const data = await fetchFileFromIPFS(review.ipfsContentHash);
                 const date = new Date(review.timestamp * 1000)
-                // console.log(date.toLocaleDateString())
-                // console.log(date.toLocaleTimeString())
                 const obj = {
                     rating: review.rating,
                     reviewer: review.reviewer,
                     content: data,
-                    oneWordReview:review.oneWordReview,
+                    oneWordReview: review.oneWordReview,
                     time: date.toLocaleTimeString(),
                     date: date.toLocaleDateString()
                 };
@@ -94,7 +92,7 @@ export const Product = () => {
             </div>
             <div className='p-4 border-2 flex flex-col max-w-xl mx-auto mt-8 gap-4'>
                 <input type="number" className='border-2 px-4 py-2' placeholder='Give Rating from 1 to 5' name='rating' min={1} max={5} onChange={(e) => handleChange(e, 'rating')} required />
-                <input type="text" className='border-2 px-4 py-2' placeholder='One Word Review' name='oneWordReview' onChange={(e)=> handleChange(e,'oneWordReview')}  required/>
+                <input type="text" className='border-2 px-4 py-2' placeholder='One Word Review' name='oneWordReview' onChange={(e) => handleChange(e, 'oneWordReview')} required />
                 <textarea name="review" className='border-2 px-4 py-2' placeholder='Your Detailed Review of the Product' id="" cols="20" rows="5" onChange={(e) => handleChange(e, 'review')} required></textarea>
                 <button className='px-4 py-2 bg-blue-500 text-white' onClick={handleSubmit}>Add Review</button>
                 {error && <p className="text-red-500">{error}</p>}
@@ -125,7 +123,6 @@ export const Product = () => {
                         <div>
                             <p>{review.content}</p>
                         </div>
-                        {/* <button className='bg-red-500 px-4 py-2 text-white mt-4 rounded' onClick={(id) => handleDelete(id)}>Delete Review</button> */}
                     </div>
                 ))}
             </div>

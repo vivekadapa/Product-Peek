@@ -14,7 +14,7 @@ contract ProductRatingSystem {
         string ipfsContentHash;
         uint8 rating;
         uint256 timestamp;
-        string oneWordReview; // New attribute for one-word review
+        string oneWordReview;
     }
 
     struct Product {
