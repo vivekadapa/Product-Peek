@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 export const Navbar = () => {
-    const { connectWallet, currentAccount, products,createEtheruemContext } = useContext(ProductContext);
+    const { connectWallet, currentAccount, products, createEtheruemContext } = useContext(ProductContext);
     console.log(products);
 
     // const [reviewCoolDown,setReviewCoolDown] = useState("");
@@ -24,7 +24,12 @@ export const Navbar = () => {
                 <h1 className='text-white text-3xl font-semibold'>Product<span className='text-blue-600'>Peek</span></h1>
             </Link>
             <div className='flex gap-4'>
-                <Link to={"/addproduct"} className='text-white px-4 py-2 bg-blue-600 rounded-md hover:scale-105 transition-all duration-300 cursor-pointer'>Add Product</Link>
+                {
+                    currentAccount == '0xaffd5414fe9ef3987da8a8f1a0c298a8d47efc8c' ?
+                        (
+                            <Link to={"/addproduct"} className='text-white px-4 py-2 bg-blue-600 rounded-md hover:scale-105 transition-all duration-300 cursor-pointer'>Add Product</Link>
+                        ) : ""
+                }
                 {
                     currentAccount ? (
                         <div className='relative group'>

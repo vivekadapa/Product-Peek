@@ -70,7 +70,7 @@ export const ProductProvider = ({ children }) => {
                 console.log('No accounts found')
             }
 
-            console.log(accounts);
+            console.log(accounts[0]);
         } catch (error) {
             console.log(error)
             throw Error("No ethereum Object");
